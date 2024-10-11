@@ -174,3 +174,34 @@ rename_device:
       required: true
       selector:
         text:
+
+set_upnp_settings:
+  name: Set UPnP settings
+  description: Turn on/off aspects of UPnP on the mesh
+  fields:
+    mesh:
+      name: Mesh
+      description: The Mesh that the action should be executed on
+      required: true
+      selector:
+        device:
+          integration: linksys_velop
+          manufacturer: uvjim
+    enabled:
+      name: Enabled
+      description: True to enable UPnP, false to disable.
+      required: true
+      selector:
+        boolean:
+    allow_change_settings:
+      name: Allow users to configure
+      description: Whether users can change settings when UPnP is enabled.
+      required: true
+      selector:
+        boolean:
+    allow_disable_internet:
+      name: Allow users to disable Internet access
+      description: Whether users can disable the Internet when UPnP is enabled.
+      required: true
+      selector:
+        boolean:

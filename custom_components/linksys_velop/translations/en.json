@@ -646,6 +646,28 @@
                     "name": "Mesh"
                 }
             }
+        },
+        "set_upnp_settings": {
+            "description": "Turn on/off aspects of UPnP on the mesh",
+            "name": "Set UPnP settings",
+            "fields": {
+                "mesh": {
+                    "description": "The Mesh that the action should be executed on",
+                    "name": "Mesh"
+                },
+                "enabled": {
+                    "description": "True to enable UPnP, false to disable.",
+                    "name": "Enabled"
+                },
+                "allow_change_settings": {
+                    "description": "Whether users can change settings when UPnP is enabled.",
+                    "name": "Allow users to configure"
+                },
+                "allow_disable_internet": {
+                    "description": "Whether users can disable the Internet when UPnP is enabled.",
+                    "name": "Allow users to disable Internet access"
+                }
+            }
         }
     }
 }

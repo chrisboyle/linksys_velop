@@ -108,6 +108,16 @@ class LinksysVelopServiceHandler:
                 }
             )
         },
+        "set_upnp_settings": {
+            "schema": vol.Schema(
+                {
+                    vol.Required("mesh"): str,
+                    vol.Required("enabled"): bool,
+                    vol.Required("allow_change_settings"): bool,
+                    vol.Required("allow_disable_internet"): bool,
+                }
+            )
+        },
     }
 
     def __init__(self, hass: HomeAssistant) -> None:
@@ -342,5 +352,22 @@ class LinksysVelopServiceHandler:
             await self._mesh.async_rename_device(
                 device_id=device[0].unique_id, name=kwargs.get("new_name")
             )
+
+        _LOGGER.debug(self._log_formatter.format("exited"))
+
+    async def set_upnp_settings(
+        self, config_entry: LinksysVelopConfigEntry, **kwargs
+    ) -> None:
+        """Set UPnP settings for the mesh.
+
+        :return:None
+        """
+        _LOGGER.debug(self._log_formatter.format("entered, kwargs: %s"), kwargs)
+
+        await self._mesh.async_set_upnp_settings(
+            enabled=kwargs.get("enabled"),
+            allow_change_settings=kwargs.get("allow_change_settings"),
+            allow_disable_internet=kwargs.get("allow_disable_internet"),
+        )
 
         _LOGGER.debug(self._log_formatter.format("exited"))
